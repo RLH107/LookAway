@@ -17,6 +17,9 @@ public class DayTime : MonoBehaviour
 
     public static DayTime instance;
     bool day = false;
+
+    SpawnAI SpawnAI_Script;
+
     private void Awake()
     {
         instance = this;
@@ -24,6 +27,7 @@ public class DayTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnAI_Script = GameObject.FindGameObjectWithTag("SpawnSis").GetComponent<SpawnAI>();
         sunlight = GetComponent<Light>();
         DawnCall += Afternon;
         DuskCall += Morning;
@@ -46,11 +50,15 @@ public class DayTime : MonoBehaviour
         {
             DuskCall();
             day = true;
+
+            SpawnAI_Script.Night = true;
         }
         if (intensity < 0.4f&& day)
         {
             DawnCall();
             day = false;
+
+            SpawnAI_Script.Night = false;
         }
 
     }

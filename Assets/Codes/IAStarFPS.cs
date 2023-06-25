@@ -41,9 +41,7 @@ public class IAStarFPS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         anim.SetFloat("Velocidade", agent.velocity.magnitude);
-
     }
 
     void StateMachine(States _state)
